@@ -1,3 +1,4 @@
+using Kafka.Dotnet.API.Services;
 using Kafka.Dotnet.API.Storage;
 using Kafka.Dotnet.API.Storage.Entities;
 
@@ -14,6 +15,7 @@ namespace Kafka.Dotnet.API
 
             builder.Services.AddControllers();
             builder.Services.AddScoped<IReadonlyStorage<Note>, NoteStorage>();
+            builder.Services.AddScoped<IMessagingService, MessagingService>();
 
 
             var app = builder.Build();

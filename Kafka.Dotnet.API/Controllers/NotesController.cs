@@ -1,4 +1,5 @@
 using Confluent.Kafka;
+using Kafka.Dotnet.API.Services;
 using Kafka.Dotnet.API.Storage;
 using Kafka.Dotnet.API.Storage.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ namespace Kafka.Dotnet.API.Controllers
     public class NotesController : ControllerBase
     {
         private readonly IReadonlyStorage<Note> _storage;
+        private readonly IMessagingService _messagingService;
 
         public NotesController(IReadonlyStorage<Note> storage)
         {
@@ -28,5 +30,13 @@ namespace Kafka.Dotnet.API.Controllers
         {
             return _storage.GetValue(id);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Note note)
+        {
+            _messagingService.Send(note);
+            return NoContent();
+        }
+
     }
 }
