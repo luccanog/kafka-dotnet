@@ -30,8 +30,8 @@ namespace Kafka.Dotnet.API.Controllers
         public ActionResult<Note> Get([FromRoute] Guid id)
         {
             var note = _storage.GetValue(id);
-            
-            if(note is null)
+
+            if (note is null)
             {
                 return NotFound();
             }
@@ -40,11 +40,15 @@ namespace Kafka.Dotnet.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] Note note)
+        public IActionResult Post([FromBody] NoteDTO dto)
         {
-            _messagingService.Send(note);
+            _messagingService.SendAsync(new Note(dto.Content));
             return NoContent();
         }
+    }
 
+    public record NoteDTO
+    {
+        public string Content { get; set; } = string.Empty;
     }
 }
