@@ -13,26 +13,34 @@ namespace Kafka.Dotnet.API.Controllers
         private readonly IReadonlyStorage<Note> _storage;
         private readonly IMessagingService _messagingService;
 
-        public NotesController(IReadonlyStorage<Note> storage)
+        public NotesController(IReadonlyStorage<Note> storage, IMessagingService messagingService)
         {
             _storage = storage;
+            _messagingService = messagingService;
         }
 
         [HttpGet]
         public IEnumerable<Note> GetAll()
         {
-            return _storage.GetAll();   
+            return _storage.GetAll();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Note Get([FromRoute] Guid id)
+        public ActionResult<Note> Get([FromRoute] Guid id)
         {
-            return _storage.GetValue(id);
+            var note = _storage.GetValue(id);
+            
+            if(note is null)
+            {
+                return NotFound();
+            }
+
+            return Ok(note);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] Note note)
+        public IActionResult Post([FromBody] Note note)
         {
             _messagingService.Send(note);
             return NoContent();
