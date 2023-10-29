@@ -23,7 +23,7 @@ namespace Kafka.Dotnet.Consumer
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _consumer.Subscribe("topic");
+            _consumer.Subscribe("notes");
 
             while (!stoppingToken.IsCancellationRequested)
             {
