@@ -7,11 +7,11 @@ namespace Kafka.Dotnet.API.Services
     {
         private readonly IProducer<Null, string> _producer;
 
-        public MessagingService()
+        public MessagingService(IConfiguration configuration)
         {
             var config = new ProducerConfig
             {
-                BootstrapServers = "host1:9092",
+                BootstrapServers = configuration["Kafka:BootstrapServers"],
             };
 
             _producer = new ProducerBuilder<Null, string>(config).Build();
