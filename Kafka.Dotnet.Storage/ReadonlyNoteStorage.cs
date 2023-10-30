@@ -1,12 +1,12 @@
-﻿using Kafka.Dotnet.API.Storage.Entities;
+﻿using Kafka.Dotnet.Storage.Entities;
 
-namespace Kafka.Dotnet.API.Storage
+namespace Kafka.Dotnet.Storage
 {
-    public class NoteStorage : IReadonlyStorage<Note>
+    public class ReadonlyNoteStorage : IReadonlyStorage<Note>
     {
         private readonly AppDbContext _context;
 
-        public NoteStorage(AppDbContext context)
+        public ReadonlyNoteStorage(AppDbContext context)
         {
             _context = context;
         }
@@ -18,7 +18,7 @@ namespace Kafka.Dotnet.API.Storage
 
         public Note? GetValue(Guid id)
         {
-           return _context.Notes.Find(id);
+            return _context.Notes.Find(id);
         }
     }
 }

@@ -1,7 +1,7 @@
 using Confluent.Kafka;
 using Kafka.Dotnet.API.Services;
-using Kafka.Dotnet.API.Storage;
-using Kafka.Dotnet.API.Storage.Entities;
+using Kafka.Dotnet.Storage;
+using Kafka.Dotnet.Storage.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Kafka.Dotnet.API.Controllers

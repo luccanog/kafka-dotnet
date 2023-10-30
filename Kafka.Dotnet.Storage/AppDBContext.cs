@@ -1,7 +1,8 @@
-﻿using Kafka.Dotnet.API.Storage.Entities;
+﻿using Kafka.Dotnet.Storage.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
-namespace Kafka.Dotnet.API.Storage
+namespace Kafka.Dotnet.Storage
 {
     public class AppDbContext : DbContext
     {

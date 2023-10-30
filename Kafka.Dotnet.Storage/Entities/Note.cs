@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Kafka.Dotnet.API.Storage.Entities
+namespace Kafka.Dotnet.Storage.Entities
 {
     public class Note
     {

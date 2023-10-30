@@ -1,4 +1,4 @@
-﻿namespace Kafka.Dotnet.API.Storage
+﻿namespace Kafka.Dotnet.Storage
 {
     public interface IReadonlyStorage<T> where T : class
     {
