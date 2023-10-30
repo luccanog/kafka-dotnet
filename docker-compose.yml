@@ -166,8 +166,14 @@ services:
       KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
       KAFKA_REST_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
 
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      SA_PASSWORD: "Testpwd98765"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+
 networks:
   default:
-      name: kafka_default
-      external: true
-  
+      name: kafka_default  
