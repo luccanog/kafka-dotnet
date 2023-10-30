@@ -2,7 +2,7 @@
 
 namespace Kafka.Dotnet.Storage
 {
-    internal class NoteStorage : IStorage<Note>
+    public class NoteStorage : IStorage<Note>
     {
         private readonly AppDbContext _context;
 
