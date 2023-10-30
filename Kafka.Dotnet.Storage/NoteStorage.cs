@@ -14,6 +14,7 @@ namespace Kafka.Dotnet.Storage
         public void Add(Note note)
         {
             _context.Notes.Add(note);
+            _context.SaveChanges();
         }
     }
 }

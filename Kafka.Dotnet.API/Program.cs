@@ -15,7 +15,6 @@ namespace Kafka.Dotnet.API
 
             builder.Services.AddControllers();
             builder.Services.AddScoped<IReadonlyStorage<Note>, ReadonlyNoteStorage>();
-            builder.Services.AddScoped<IStorage<Note>, NoteStorage>();
             builder.Services.AddScoped<IMessagingService, MessagingService>();
 
 
