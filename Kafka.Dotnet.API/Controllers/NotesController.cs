@@ -42,7 +42,7 @@ namespace Kafka.Dotnet.API.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] NoteDTO dto)
         {
-            _messagingService.SendAsync(new Note(dto.Content));
+            _messagingService.Send(new Note(dto.Content));
             return NoContent();
         }
     }

@@ -12,16 +12,27 @@ namespace Kafka.Dotnet.API.Services
             var config = new ProducerConfig
             {
                 BootstrapServers = configuration["Kafka:BootstrapServers"],
+                AllowAutoCreateTopics = true
             };
 
             _producer = new ProducerBuilder<Null, string>(config).Build();
 
         }
 
-        public async Task SendAsync<T>(T message)
+        public void Send<T>(T message)
         {
-            var result = await _producer.ProduceAsync("notes", new Message<Null, string> { Value = JsonSerializer.Serialize(message) });
-            Console.WriteLine(result.Value);
+            _producer.Produce("notes", new Message<Null, string> { Value = JsonSerializer.Serialize(message) },
+                    (deliveryReport) =>
+                    {
+                        if (deliveryReport.Error.Code != ErrorCode.NoError)
+                        {
+                            Console.WriteLine($"Failed to deliver message: {deliveryReport.Error.Reason}");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Produced event to topic");
+                        }
+                    });
         }
     }
 }
