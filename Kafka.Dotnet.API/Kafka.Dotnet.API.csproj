@@ -6,6 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>21c30313-f4c8-4fbd-b4b0-0ea095c9bf72</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    <DockerfileRunArguments>--network=kafka_default</DockerfileRunArguments>
   </PropertyGroup>
 
   <ItemGroup>
